@@ -21,9 +21,9 @@ class AdminUserController extends Controller
         $validated = $request->validated();
         $validated['password'] = Hash::make($validated['password']);
 
-        User::create($validated);
+        $user = User::create($validated);
 
-        return response()->json(['status' => 'success'], 201);
+        return response()->json(['status' => 'success', 'data' => $user], 201);
     }
 
     public function show(User $user)
